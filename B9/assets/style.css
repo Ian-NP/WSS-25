@@ -34,9 +34,7 @@ body{
 
 .container img{
     height: 100%;
-    aspect-ratio: 3/2;
     object-fit: cover;
-    filter: brightness(80%);
 }
 
 .before{
@@ -49,17 +47,73 @@ body{
     object-position: right;
 }
 
-.sliderInput{
+.sliderInput {
+    -webkit-appearance: none; /* Remove default styling */
+    appearance: none;
+    width: calc(100% + 3.5rem); /* Set the width of the slider */
+    outline: none; /* Remove focus outline */
     position: absolute;
-    left: 50%;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
     z-index: 1;
-    opacity: 0;
+    background: none;
 }
 
-svg{
+.sliderInput::-webkit-slider-thumb {
+    appearance: none;
+    height: 90vh; /* Set the thumb height */
+    width: 3.5rem; /* Set the thumb width */
+    background-image: url("splitter.svg"); /* Set the thumb background image */
+    background-size: cover; /* Make the image cover the thumb */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repetition of the image */
+    border: none; /* Remove border */
+    cursor: pointer; /* Change cursor on hover */
+    border-radius: 50%; /* Optional: Make the thumb circular */
+}
+
+.container:hover img{
+    filter: brightness(80%);
+}
+
+.container:hover::before, .container:hover::after{ 
+    position: absolute;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    top: calc(50% - 2.75rem);
+}
+
+.container:hover::before{
+    left: 0;
+    content:"Before";  
+    z-index: 1;
+}
+
+.container:hover::after{
+    content:"After"; 
+    right: 0;
+}
+
+
+/* .container::before{
+    content: "";
+    position: absolute;
+    left: var(--position);
+    transform: translate(-50%);
+    max-height: 90vh;
+    width: 100%;
+    height: 100%;
+    background-image: url('splitter.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+} */
+
+/* svg{
     position: absolute;
     left: var(--position);
     transform: translate(-50%);
@@ -84,4 +138,4 @@ svg{
     text-align: center;
     color: white;
     font-size: 1.75rem
-}
+} */
